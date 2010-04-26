@@ -16,12 +16,13 @@ no_index:
     - t
     - xt
     - examples
+    - corpus
 provides:
   Dist::Zilla::Plugin::Twitter:
     file: lib/Dist/Zilla/Plugin/Twitter.pm
-    version: 0.003
+    version: 0.004
 recommends: {}
 requires: {}
 resources:
   repository: http://github.com/dagolden/dist-zilla-plugin-twitter
-version: 0.003
+version: 0.004

@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.002
+    version 0.003
 
 SYNOPSIS
     In your "dist.ini":

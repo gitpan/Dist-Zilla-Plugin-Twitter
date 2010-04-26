@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-Plugin-Twitter
 
+0.003     2010-04-26 00:26:26 EST5EDT
+
+    - no changes -- releasing to test the new URL
+
 0.002     2010-04-26 00:19:42 EST5EDT
 
     - change url from frepan to the README on cpan.cpantesters.org;

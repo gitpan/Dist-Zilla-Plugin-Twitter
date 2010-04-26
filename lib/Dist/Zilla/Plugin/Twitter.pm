@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Plugin::Twitter;
 BEGIN {
-  $Dist::Zilla::Plugin::Twitter::VERSION = '0.002';
+  $Dist::Zilla::Plugin::Twitter::VERSION = '0.003';
 }
 # ABSTRACT: Twitter when you release with Dist::Zilla
 
@@ -98,7 +98,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 

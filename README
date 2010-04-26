@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.001
+    version 0.002
 
 SYNOPSIS
     In your "dist.ini":
@@ -17,12 +17,14 @@ SYNOPSIS
 
 DESCRIPTION
     This plugin will use Net::Twitter with the login and password in your
-    ".netrc" file to send a release notice to Twitter.
+    ".netrc" file to send a release notice to Twitter. By default, it will
+    include a link to your README file as extracted on a fast CPAN mirror.
+    This works very nicely with Dist::Zilla::Plugin::ReadmeFromPod.
 
     The default configuration is as follows:
 
        [Twitter]
-       tweet_url = http://frepan.64p.org/~{{$AUTHOR}}/{{$TARBALL}}
+       tweet_url = http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}.readme
        tweet = Released {{$DIST}}-{{$VERSION}} {{$URL}}
 
     The "tweet_url" is shortened with WWW::Shorten::TinyURL and appended to
@@ -32,7 +34,9 @@ DESCRIPTION
            DIST        # Foo-Bar
            VERSION     # 1.23
            TARBALL     # Foo-Bar-1.23.tar.gz
-           AUTHOR      # CPAN author ID (in lower case)
+           AUTHOR_UC   # JOHNDOE
+           AUTHOR_LC   # johndoe
+           AUTHOR_PATH # J/JO/JOHNDOE
            URL         # TinyURL
 
     You must be using the "UploadToCPAN" plugin for this plugin to determine

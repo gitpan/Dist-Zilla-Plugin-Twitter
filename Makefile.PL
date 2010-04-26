@@ -21,7 +21,7 @@ my %WriteMakefileArgs = (
                        'BUILD_REQUIRES' => {},
                        'ABSTRACT' => 'Twitter when you release with Dist::Zilla',
                        'EXE_FILES' => [],
-                       'VERSION' => '0.001',
+                       'VERSION' => '0.002',
                        'PREREQ_PM' => {},
                        'LICENSE' => 'apache'
                      );

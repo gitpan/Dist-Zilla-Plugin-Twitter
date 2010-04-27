@@ -12,10 +12,11 @@ use strict;
 use warnings;
 package Dist::Zilla::Plugin::Twitter;
 BEGIN {
-  $Dist::Zilla::Plugin::Twitter::VERSION = '0.004';
+  $Dist::Zilla::Plugin::Twitter::VERSION = '0.005';
 }
 # ABSTRACT: Twitter when you release with Dist::Zilla
 
+use Dist::Zilla 2.101170 ();
 use Carp qw/confess/;
 use Moose 0.99;
 use WWW::Shorten::TinyURL 1 ();
@@ -98,7 +99,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 

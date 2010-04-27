@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-
+ BEGIN { require 5.008; } 
 
 use ExtUtils::MakeMaker 6.31;
 
@@ -18,11 +18,31 @@ my %WriteMakefileArgs = (
                                                  'ExtUtils::MakeMaker' => '6.31'
                                                },
                        'AUTHOR' => 'David Golden <dagolden@cpan.org>',
-                       'BUILD_REQUIRES' => {},
+                       'BUILD_REQUIRES' => {
+                                             'Sub::Exporter' => '0',
+                                             'Dist::Zilla::Tester' => '0',
+                                             'Dist::Zilla::Role::Releaser' => '0',
+                                             'Dist::Zilla::App::Tester' => '0',
+                                             'Test::More' => '0.88',
+                                             'LWP::UserAgent' => '0',
+                                             'Params::Util' => '0',
+                                             'File::Find' => '0',
+                                             'File::Temp' => '0',
+                                             'Path::Class' => '0'
+                                           },
                        'ABSTRACT' => 'Twitter when you release with Dist::Zilla',
                        'EXE_FILES' => [],
-                       'VERSION' => '0.004',
-                       'PREREQ_PM' => {},
+                       'VERSION' => '0.005',
+                       'PREREQ_PM' => {
+                                        'Dist::Zilla::Role::TextTemplate' => '0',
+                                        'namespace::autoclean' => '0.09',
+                                        'Dist::Zilla::Role::AfterRelease' => '0',
+                                        'WWW::Shorten::TinyURL' => '1',
+                                        'Carp' => '0',
+                                        'Dist::Zilla' => '2.101170',
+                                        'Net::Twitter' => '3',
+                                        'Moose' => '0.99'
+                                      },
                        'LICENSE' => 'apache'
                      );
 

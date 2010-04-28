@@ -8,6 +8,7 @@ build_requires:
   Dist::Zilla::Tester: 0
   File::Find: 0
   File::Temp: 0
+  HTTP::Response: 0
   LWP::UserAgent: 0
   Params::Util: 0
   Path::Class: 0
@@ -30,18 +31,21 @@ no_index:
 provides:
   Dist::Zilla::Plugin::Twitter:
     file: lib/Dist/Zilla/Plugin/Twitter.pm
-    version: 0.005
+    version: 0.006
 recommends: {}
 requires:
   Carp: 0
   Dist::Zilla: 2.101170
   Dist::Zilla::Role::AfterRelease: 0
   Dist::Zilla::Role::TextTemplate: 0
+  Math::BigFloat: 0
   Moose: 0.99
+  Net::Netrc: 0
   Net::Twitter: 3
   WWW::Shorten::TinyURL: 1
   namespace::autoclean: 0.09
   perl: 5.008
+  utf8: 0
 resources:
   repository: http://github.com/dagolden/dist-zilla-plugin-twitter
-version: 0.005
+version: 0.006

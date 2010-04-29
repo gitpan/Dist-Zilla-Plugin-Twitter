@@ -33,7 +33,7 @@ my %WriteMakefileArgs = (
                                            },
                        'ABSTRACT' => 'Twitter when you release with Dist::Zilla',
                        'EXE_FILES' => [],
-                       'VERSION' => '0.006',
+                       'VERSION' => '0.007',
                        'PREREQ_PM' => {
                                         'Dist::Zilla::Role::TextTemplate' => '0',
                                         'namespace::autoclean' => '0.09',

@@ -2,12 +2,13 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.006
+    version 0.007
 
 SYNOPSIS
     In your "dist.ini":
 
        [Twitter]
+       hash_tags = #foo
 
     In your ".netrc":
 
@@ -41,6 +42,12 @@ DESCRIPTION
 
     You must be using the "UploadToCPAN" plugin for this plugin to determine
     your CPAN author ID.
+
+    You can use the "hash_tags" option to append hash tags (or anything,
+    really) to the end of the message generated from "tweet".
+
+       [Twitter]
+       hash-tags = #perl #cpan #foo
 
 AUTHOR
       David Golden <dagolden@cpan.org>

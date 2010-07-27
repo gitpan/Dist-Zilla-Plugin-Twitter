@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.007
+    version 0.008
 
 SYNOPSIS
     In your "dist.ini":
@@ -40,8 +40,8 @@ DESCRIPTION
            AUTHOR_PATH # J/JO/JOHNDOE
            URL         # TinyURL
 
-    You must be using the "UploadToCPAN" plugin for this plugin to determine
-    your CPAN author ID.
+    You must be using the "UploadToCPAN" or "FakeRelease" plugin for this
+    plugin to determine your CPAN author ID.
 
     You can use the "hash_tags" option to append hash tags (or anything,
     really) to the end of the message generated from "tweet".

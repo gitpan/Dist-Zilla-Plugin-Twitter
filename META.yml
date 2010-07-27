@@ -16,7 +16,8 @@ build_requires:
   Test::More: 0.88
 configure_requires:
   ExtUtils::MakeMaker: 6.31
-generated_by: 'Dist::Zilla version 2.101170'
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.101831, CPAN::Meta::Converter version 2.101670'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -31,8 +32,7 @@ no_index:
 provides:
   Dist::Zilla::Plugin::Twitter:
     file: lib/Dist/Zilla/Plugin/Twitter.pm
-    version: 0.007
-recommends: {}
+    version: 0.008
 requires:
   Carp: 0
   Dist::Zilla: 2.101170
@@ -48,4 +48,4 @@ requires:
   utf8: 0
 resources:
   repository: http://github.com/dagolden/dist-zilla-plugin-twitter
-version: 0.007
+version: 0.008

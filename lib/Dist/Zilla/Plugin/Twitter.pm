@@ -13,7 +13,7 @@ use warnings;
 use utf8;
 package Dist::Zilla::Plugin::Twitter;
 BEGIN {
-  $Dist::Zilla::Plugin::Twitter::VERSION = '0.007';
+  $Dist::Zilla::Plugin::Twitter::VERSION = '0.008';
 }
 # ABSTRACT: Twitter when you release with Dist::Zilla
 
@@ -73,7 +73,7 @@ sub after_release {
 
     my $cpan_id = '';
     for my $plugin ( @{ $zilla->plugins_with( -Releaser ) } ) {
-      if ( my $user = eval { $plugin->user } ) {
+      if ( my $user = eval { $plugin->user } || eval { $plugin->username } ) {
         $cpan_id = uc $user;
         last;
       }
@@ -133,7 +133,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SYNOPSIS
 
@@ -173,7 +173,7 @@ available for substitution in the URL and message templates:
        AUTHOR_PATH # J/JO/JOHNDOE
        URL         # TinyURL
 
-You must be using the C<<< UploadToCPAN >>> plugin for this plugin to
+You must be using the C<<< UploadToCPAN >>> or C<<< FakeRelease >>> plugin for this plugin to
 determine your CPAN author ID.
 
 You can use the C<<< hash_tags >>> option to append hash tags (or anything,

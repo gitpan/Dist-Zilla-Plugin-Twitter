@@ -13,11 +13,11 @@ use warnings;
 use utf8;
 package Dist::Zilla::Plugin::Twitter;
 BEGIN {
-  $Dist::Zilla::Plugin::Twitter::VERSION = '0.008';
+  $Dist::Zilla::Plugin::Twitter::VERSION = '0.009';
 }
 # ABSTRACT: Twitter when you release with Dist::Zilla
 
-use Dist::Zilla 2.101170 ();
+use Dist::Zilla 4 ();
 use Carp qw/confess/;
 use Moose 0.99;
 use Math::BigFloat;
@@ -133,7 +133,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 

@@ -33,7 +33,7 @@ my %WriteMakefileArgs = (
   'NAME' => 'Dist::Zilla::Plugin::Twitter',
   'PREREQ_PM' => {
     'Carp' => '0',
-    'Dist::Zilla' => '2.101170',
+    'Dist::Zilla' => '4',
     'Dist::Zilla::Role::AfterRelease' => '0',
     'Dist::Zilla::Role::TextTemplate' => '0',
     'Math::BigFloat' => '0',
@@ -44,7 +44,7 @@ my %WriteMakefileArgs = (
     'namespace::autoclean' => '0.09',
     'utf8' => '0'
   },
-  'VERSION' => '0.008',
+  'VERSION' => '0.009',
   'test' => {
     'TESTS' => 't/*.t'
   }

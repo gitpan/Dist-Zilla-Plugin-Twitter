@@ -32,10 +32,10 @@ no_index:
 provides:
   Dist::Zilla::Plugin::Twitter:
     file: lib/Dist/Zilla/Plugin/Twitter.pm
-    version: 0.008
+    version: 0.009
 requires:
   Carp: 0
-  Dist::Zilla: 2.101170
+  Dist::Zilla: 4
   Dist::Zilla::Role::AfterRelease: 0
   Dist::Zilla::Role::TextTemplate: 0
   Math::BigFloat: 0
@@ -48,4 +48,4 @@ requires:
   utf8: 0
 resources:
   repository: http://github.com/dagolden/dist-zilla-plugin-twitter
-version: 0.008
+version: 0.009

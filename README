@@ -2,13 +2,14 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.009
+    version 0.010
 
 SYNOPSIS
     In your "dist.ini":
 
        [Twitter]
        hash_tags = #foo
+       url_shortener = TinyURL
 
     In your ".netrc":
 
@@ -27,10 +28,12 @@ DESCRIPTION
        [Twitter]
        tweet_url = http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}.readme
        tweet = Released {{$DIST}}-{{$VERSION}} {{$URL}}
+       url_shortener = TinyURL
 
-    The "tweet_url" is shortened with WWW::Shorten::TinyURL and appended to
-    the "tweet" messsage. The following variables are available for
-    substitution in the URL and message templates:
+    The "tweet_url" is shortened with WWW::Shorten::TinyURL or whichever
+    other service you choose and appended to the "tweet" messsage. The
+    following variables are available for substitution in the URL and
+    message templates:
 
            DIST        # Foo-Bar
            VERSION     # 1.23
@@ -38,7 +41,7 @@ DESCRIPTION
            AUTHOR_UC   # JOHNDOE
            AUTHOR_LC   # johndoe
            AUTHOR_PATH # J/JO/JOHNDOE
-           URL         # TinyURL
+           URL         # http://tinyurl.com/...
 
     You must be using the "UploadToCPAN" or "FakeRelease" plugin for this
     plugin to determine your CPAN author ID.
@@ -50,10 +53,10 @@ DESCRIPTION
        hash-tags = #perl #cpan #foo
 
 AUTHOR
-      David Golden <dagolden@cpan.org>
+    David Golden <dagolden@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is Copyright (c) 2010 by David Golden.
+    This software is Copyright (c) 2011 by David Golden.
 
     This is free software, licensed under:
 

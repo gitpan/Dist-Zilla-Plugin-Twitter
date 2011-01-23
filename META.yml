@@ -17,7 +17,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.101831, CPAN::Meta::Converter version 2.101670'
+generated_by: 'Dist::Zilla version 4.200001, CPAN::Meta::Converter version 2.102400'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -29,10 +29,12 @@ no_index:
     - xt
     - examples
     - corpus
+  package:
+    - DB
 provides:
   Dist::Zilla::Plugin::Twitter:
     file: lib/Dist/Zilla/Plugin/Twitter.pm
-    version: 0.009
+    version: 0.010
 requires:
   Carp: 0
   Dist::Zilla: 4
@@ -42,10 +44,13 @@ requires:
   Moose: 0.99
   Net::Netrc: 0
   Net::Twitter: 3
-  WWW::Shorten::TinyURL: 1
+  WWW::Shorten: 3.02
+  WWW::Shorten::Simple: 0
+  WWW::Shorten::TinyURL: 0
   namespace::autoclean: 0.09
   perl: 5.008
   utf8: 0
 resources:
-  repository: http://github.com/dagolden/dist-zilla-plugin-twitter
-version: 0.009
+  homepage: http://github.com/dagolden/dist-zilla-plugin-twitter/tree
+  repository: git://github.com/dagolden/dist-zilla-plugin-twitter.git
+version: 0.010

@@ -1,19 +1,19 @@
-# 
+#
 # This file is part of Dist-Zilla-Plugin-Twitter
-# 
-# This software is Copyright (c) 2010 by David Golden.
-# 
+#
+# This software is Copyright (c) 2011 by David Golden.
+#
 # This is free software, licensed under:
-# 
+#
 #   The Apache License, Version 2.0, January 2004
-# 
+#
 use 5.008;
 use strict;
 use warnings;
 use utf8;
 package Dist::Zilla::Plugin::Twitter;
 BEGIN {
-  $Dist::Zilla::Plugin::Twitter::VERSION = '0.009';
+  $Dist::Zilla::Plugin::Twitter::VERSION = '0.010';
 }
 # ABSTRACT: Twitter when you release with Dist::Zilla
 
@@ -23,7 +23,9 @@ use Moose 0.99;
 use Math::BigFloat;
 use Net::Twitter 3 ();
 use Net::Netrc;
-use WWW::Shorten::TinyURL 1 ();
+use WWW::Shorten::Simple ();  # A useful interface to WWW::Shorten
+use WWW::Shorten 3.02 ();     # For latest updates to dead services
+use WWW::Shorten::TinyURL (); # Our fallback
 use namespace::autoclean 0.09;
 
 # extends, roles, attributes, etc.
@@ -40,6 +42,12 @@ has 'tweet_url' => (
   is  => 'ro',
   isa => 'Str',
   default => 'http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}.readme',
+);
+
+has 'url_shortener' => (
+  is    => 'ro',
+  isa   => 'Str',
+  default => 'TinyURL',
 );
 
 has 'hash_tags' => (
@@ -93,7 +101,11 @@ sub after_release {
     };
 
     my $longurl = $self->fill_in_string($self->tweet_url, $stash);
-    $stash->{URL} = WWW::Shorten::TinyURL::makeashorterlink($longurl);
+    foreach my $service (($self->url_shortener, 'TinyURL')) { # Fallback to TinyURL on errors
+      my $shortener = WWW::Shorten::Simple->new($service);
+      $self->log("Trying $service");
+      $stash->{URL} = eval { $shortener->shorten($longurl) } and last;
+    }
 
     my $msg = $self->fill_in_string( $self->tweet, $stash);
     if (defined $self->hash_tags) {
@@ -133,7 +145,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 
@@ -141,6 +153,7 @@ In your C<<< dist.ini >>>:
 
    [Twitter]
    hash_tags = #foo
+   url_shortener = TinyURL
 
 In your C<<< .netrc >>>:
 
@@ -160,8 +173,10 @@ The default configuration is as follows:
    [Twitter]
    tweet_url = http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}.readme
    tweet = Released {{$DIST}}-{{$VERSION}} {{$URL}}
+   url_shortener = TinyURL
 
-The C<<< tweet_url >>> is shortened with L<WWW::Shorten::TinyURL> and
+The C<<< tweet_url >>> is shortened with L<WWW::Shorten::TinyURL> or
+whichever other service you choose and
 appended to the C<<< tweet >>> messsage.  The following variables are
 available for substitution in the URL and message templates:
 
@@ -171,7 +186,7 @@ available for substitution in the URL and message templates:
        AUTHOR_UC   # JOHNDOE
        AUTHOR_LC   # johndoe
        AUTHOR_PATH # J/JO/JOHNDOE
-       URL         # TinyURL
+       URL         # http://tinyurl.com/...
 
 You must be using the C<<< UploadToCPAN >>> or C<<< FakeRelease >>> plugin for this plugin to
 determine your CPAN author ID.
@@ -186,11 +201,11 @@ really) to the end of the message generated from C<<< tweet >>>.
 
 =head1 AUTHOR
 
-  David Golden <dagolden@cpan.org>
+David Golden <dagolden@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by David Golden.
+This software is Copyright (c) 2011 by David Golden.
 
 This is free software, licensed under:
 

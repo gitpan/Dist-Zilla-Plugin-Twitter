@@ -1,4 +1,3 @@
-#!perl
 #
 # This file is part of Dist-Zilla-Plugin-Twitter
 #
@@ -8,10 +7,13 @@
 #
 #   The Apache License, Version 2.0, January 2004
 #
+use strict;
+use warnings;
+package DZ2;
+# ABSTRACT: this is a sample package for testing Dist::Zilla;
 
-use Test::More;
+sub main {
+  return 1;
+}
 
-eval "use Test::Portability::Files";
-plan skip_all => "Test::Portability::Files required for testing portability"
-  if $@;
-run_tests();
+1;

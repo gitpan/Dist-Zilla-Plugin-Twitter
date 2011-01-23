@@ -40,11 +40,13 @@ my %WriteMakefileArgs = (
     'Moose' => '0.99',
     'Net::Netrc' => '0',
     'Net::Twitter' => '3',
-    'WWW::Shorten::TinyURL' => '1',
+    'WWW::Shorten' => '3.02',
+    'WWW::Shorten::Simple' => '0',
+    'WWW::Shorten::TinyURL' => '0',
     'namespace::autoclean' => '0.09',
     'utf8' => '0'
   },
-  'VERSION' => '0.009',
+  'VERSION' => '0.010',
   'test' => {
     'TESTS' => 't/*.t'
   }

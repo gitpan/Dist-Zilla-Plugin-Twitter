@@ -2,53 +2,56 @@
 use strict;
 use warnings;
 
-BEGIN { require 5.008; }
+use 5.008;
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Twitter when you release with Dist::Zilla',
-  'AUTHOR' => 'David Golden <dagolden@cpan.org>',
-  'BUILD_REQUIRES' => {
-    'Dist::Zilla::App::Tester' => '0',
-    'Dist::Zilla::Role::Releaser' => '0',
-    'Dist::Zilla::Tester' => '0',
-    'File::Find' => '0',
-    'File::Temp' => '0',
-    'HTTP::Response' => '0',
-    'LWP::UserAgent' => '0',
-    'Params::Util' => '0',
-    'Path::Class' => '0',
-    'Sub::Exporter' => '0',
-    'Test::More' => '0.88'
+  "ABSTRACT" => "Twitter when you release with Dist::Zilla",
+  "AUTHOR" => "David Golden <dagolden\@cpan.org>",
+  "BUILD_REQUIRES" => {
+    "Dist::Zilla::App::Tester" => 0,
+    "Dist::Zilla::Role::Releaser" => 0,
+    "Dist::Zilla::Tester" => 0,
+    "File::Find" => 0,
+    "File::Temp" => 0,
+    "HTTP::Response" => 0,
+    "LWP::UserAgent" => 0,
+    "Params::Util" => 0,
+    "Path::Class" => 0,
+    "Sub::Exporter" => 0,
+    "Test::More" => "0.88",
+    "base" => 0
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Dist-Zilla-Plugin-Twitter',
-  'EXE_FILES' => [],
-  'LICENSE' => 'apache',
-  'NAME' => 'Dist::Zilla::Plugin::Twitter',
-  'PREREQ_PM' => {
-    'Carp' => '0',
-    'Dist::Zilla' => '4',
-    'Dist::Zilla::Role::AfterRelease' => '0',
-    'Dist::Zilla::Role::TextTemplate' => '0',
-    'Math::BigFloat' => '0',
-    'Moose' => '0.99',
-    'Net::Netrc' => '0',
-    'Net::Twitter' => '3',
-    'WWW::Shorten' => '3.02',
-    'WWW::Shorten::Simple' => '0',
-    'WWW::Shorten::TinyURL' => '0',
-    'namespace::autoclean' => '0.09',
-    'utf8' => '0'
+  "DISTNAME" => "Dist-Zilla-Plugin-Twitter",
+  "EXE_FILES" => [],
+  "LICENSE" => "apache",
+  "NAME" => "Dist::Zilla::Plugin::Twitter",
+  "PREREQ_PM" => {
+    "Carp" => 0,
+    "Dist::Zilla" => 4,
+    "Dist::Zilla::Role::AfterRelease" => 0,
+    "Dist::Zilla::Role::TextTemplate" => 0,
+    "Math::BigFloat" => 0,
+    "Moose" => "0.99",
+    "Net::Netrc" => 0,
+    "Net::Twitter" => 3,
+    "WWW::Shorten" => "3.02",
+    "WWW::Shorten::Simple" => 0,
+    "WWW::Shorten::TinyURL" => 0,
+    "namespace::autoclean" => "0.09",
+    "strict" => 0,
+    "utf8" => 0,
+    "warnings" => 0
   },
-  'VERSION' => '0.010',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.011",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

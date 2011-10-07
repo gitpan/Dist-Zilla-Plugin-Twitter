@@ -4,7 +4,7 @@
       "David Golden <dagolden@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200001, CPAN::Meta::Converter version 2.102400",
+   "generated_by" : "Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112580",
    "license" : [
       "apache_2_0"
    ],
@@ -27,7 +27,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.31"
+            "ExtUtils::MakeMaker" : "6.30"
          }
       },
       "runtime" : {
@@ -45,7 +45,9 @@
             "WWW::Shorten::TinyURL" : 0,
             "namespace::autoclean" : "0.09",
             "perl" : "5.008",
-            "utf8" : 0
+            "strict" : 0,
+            "utf8" : 0,
+            "warnings" : 0
          }
       },
       "test" : {
@@ -60,25 +62,30 @@
             "Params::Util" : 0,
             "Path::Class" : 0,
             "Sub::Exporter" : 0,
-            "Test::More" : "0.88"
+            "Test::More" : "0.88",
+            "base" : 0
          }
       }
    },
    "provides" : {
       "Dist::Zilla::Plugin::Twitter" : {
          "file" : "lib/Dist/Zilla/Plugin/Twitter.pm",
-         "version" : "0.010"
+         "version" : "0.011"
       }
    },
    "release_status" : "stable",
    "resources" : {
-      "homepage" : "http://github.com/dagolden/dist-zilla-plugin-twitter/tree",
+      "bugtracker" : {
+         "mailto" : "bug-dist-zilla-plugin-twitter at rt.cpan.org",
+         "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twitter"
+      },
+      "homepage" : "https://github.com/dagolden/dist-zilla-plugin-twitter",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/dagolden/dist-zilla-plugin-twitter.git",
-         "web" : "http://github.com/dagolden/dist-zilla-plugin-twitter/tree"
+         "url" : "https://github.com/dagolden/dist-zilla-plugin-twitter.git",
+         "web" : "https://github.com/dagolden/dist-zilla-plugin-twitter"
       }
    },
-   "version" : "0.010"
+   "version" : "0.011"
 }
 

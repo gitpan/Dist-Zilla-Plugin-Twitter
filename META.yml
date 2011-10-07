@@ -14,10 +14,11 @@ build_requires:
   Path::Class: 0
   Sub::Exporter: 0
   Test::More: 0.88
+  base: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
+  ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200001, CPAN::Meta::Converter version 2.102400'
+generated_by: 'Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112580'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -34,7 +35,7 @@ no_index:
 provides:
   Dist::Zilla::Plugin::Twitter:
     file: lib/Dist/Zilla/Plugin/Twitter.pm
-    version: 0.010
+    version: 0.011
 requires:
   Carp: 0
   Dist::Zilla: 4
@@ -49,8 +50,11 @@ requires:
   WWW::Shorten::TinyURL: 0
   namespace::autoclean: 0.09
   perl: 5.008
+  strict: 0
   utf8: 0
+  warnings: 0
 resources:
-  homepage: http://github.com/dagolden/dist-zilla-plugin-twitter/tree
-  repository: git://github.com/dagolden/dist-zilla-plugin-twitter.git
-version: 0.010
+  bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twitter
+  homepage: https://github.com/dagolden/dist-zilla-plugin-twitter
+  repository: https://github.com/dagolden/dist-zilla-plugin-twitter.git
+version: 0.011

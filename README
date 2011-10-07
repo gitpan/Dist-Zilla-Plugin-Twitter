@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.010
+    version 0.011
 
 SYNOPSIS
     In your "dist.ini":
@@ -26,8 +26,8 @@ DESCRIPTION
     The default configuration is as follows:
 
        [Twitter]
-       tweet_url = http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}.readme
-       tweet = Released {{$DIST}}-{{$VERSION}} {{$URL}}
+       tweet_url = http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}{{$TRIAL}}.readme
+       tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}}
        url_shortener = TinyURL
 
     The "tweet_url" is shortened with WWW::Shorten::TinyURL or whichever
@@ -37,6 +37,7 @@ DESCRIPTION
 
            DIST        # Foo-Bar
            VERSION     # 1.23
+           TRIAL       # -TRIAL if is_trial, empty string otherwise.
            TARBALL     # Foo-Bar-1.23.tar.gz
            AUTHOR_UC   # JOHNDOE
            AUTHOR_LC   # johndoe
@@ -51,6 +52,23 @@ DESCRIPTION
 
        [Twitter]
        hash-tags = #perl #cpan #foo
+
+SUPPORT
+  Bugs / Feature Requests
+    Please report any bugs or feature requests by email to
+    "bug-dist-zilla-plugin-twitter at rt.cpan.org", or through the web
+    interface at
+    <http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twit
+    ter>. You will be automatically notified of any progress on the request
+    by the system.
+
+  Source Code
+    This is open source software. The code repository is available for
+    public review and contribution under the terms of the license.
+
+    <https://github.com/dagolden/dist-zilla-plugin-twitter>
+
+      git clone https://github.com/dagolden/dist-zilla-plugin-twitter.git
 
 AUTHOR
     David Golden <dagolden@cpan.org>

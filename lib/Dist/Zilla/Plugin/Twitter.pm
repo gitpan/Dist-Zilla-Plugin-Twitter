@@ -1,21 +1,10 @@
-#
-# This file is part of Dist-Zilla-Plugin-Twitter
-#
-# This software is Copyright (c) 2011 by David Golden.
-#
-# This is free software, licensed under:
-#
-#   The Apache License, Version 2.0, January 2004
-#
 use 5.008;
 use strict;
 use warnings;
 use utf8;
 package Dist::Zilla::Plugin::Twitter;
-BEGIN {
-  $Dist::Zilla::Plugin::Twitter::VERSION = '0.010';
-}
 # ABSTRACT: Twitter when you release with Dist::Zilla
+our $VERSION = '0.011'; # VERSION
 
 use Dist::Zilla 4 ();
 use Carp qw/confess/;
@@ -35,13 +24,13 @@ with 'Dist::Zilla::Role::TextTemplate';
 has 'tweet' => (
   is  => 'ro',
   isa => 'Str',
-  default => 'Released {{$DIST}}-{{$VERSION}} {{$URL}}'
+  default => 'Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}}'
 );
 
 has 'tweet_url' => (
   is  => 'ro',
   isa => 'Str',
-  default => 'http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}.readme',
+  default => 'http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}{{$TRIAL}}.readme',
 );
 
 has 'url_shortener' => (
@@ -94,6 +83,7 @@ sub after_release {
     my $stash = {
       DIST => $zilla->name,
       VERSION => $zilla->version,
+      TRIAL   => ( $zilla->is_trial ? '-TRIAL' : '' ),
       TARBALL => "$tgz",
       AUTHOR_UC => $cpan_id,
       AUTHOR_LC => lc $cpan_id,
@@ -145,7 +135,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 SYNOPSIS
 
@@ -171,8 +161,8 @@ very nicely with L<Dist::Zilla::Plugin::ReadmeFromPod>.
 The default configuration is as follows:
 
    [Twitter]
-   tweet_url = http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}.readme
-   tweet = Released {{$DIST}}-{{$VERSION}} {{$URL}}
+   tweet_url = http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}{{$TRIAL}}.readme
+   tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}}
    url_shortener = TinyURL
 
 The C<<< tweet_url >>> is shortened with L<WWW::Shorten::TinyURL> or
@@ -182,6 +172,7 @@ available for substitution in the URL and message templates:
 
        DIST        # Foo-Bar
        VERSION     # 1.23
+       TRIAL       # -TRIAL if is_trial, empty string otherwise.
        TARBALL     # Foo-Bar-1.23.tar.gz
        AUTHOR_UC   # JOHNDOE
        AUTHOR_LC   # johndoe
@@ -198,6 +189,25 @@ really) to the end of the message generated from C<<< tweet >>>.
    hash-tags = #perl #cpan #foo
 
 =for Pod::Coverage after_release
+
+=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders
+
+=head1 SUPPORT
+
+=head2 Bugs / Feature Requests
+
+Please report any bugs or feature requests by email to C<bug-dist-zilla-plugin-twitter at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twitter>. You will be automatically notified of any
+progress on the request by the system.
+
+=head2 Source Code
+
+This is open source software.  The code repository is available for
+public review and contribution under the terms of the license.
+
+L<https://github.com/dagolden/dist-zilla-plugin-twitter>
+
+  git clone https://github.com/dagolden/dist-zilla-plugin-twitter.git
 
 =head1 AUTHOR
 

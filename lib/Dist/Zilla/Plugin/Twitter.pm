@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 package Dist::Zilla::Plugin::Twitter;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.011'; # VERSION
+our $VERSION = '0.012'; # VERSION
 
 use Dist::Zilla 4 ();
 use Carp qw/confess/;
@@ -102,7 +102,11 @@ sub after_release {
         $msg .= " " . $self->hash_tags;
     }
 
-    my ($l,$p) = Net::Netrc->lookup('api.twitter.com')->lpa;
+    my ($l, $p);
+
+    eval {
+        ($l,$p) = Net::Netrc->lookup('api.twitter.com')->lpa;
+    } or confess "Can't get Twitter credentials from .netrc";
     my $nt = Net::Twitter->new(
       useragent_class => $ENV{DZ_TWITTER_USERAGENT} || 'LWP::UserAgent',
       traits => [qw/API::REST OAuth/],
@@ -135,7 +139,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 

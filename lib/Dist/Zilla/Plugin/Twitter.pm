@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 package Dist::Zilla::Plugin::Twitter;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.012'; # VERSION
+our $VERSION = '0.013'; # VERSION
 
 use Dist::Zilla 4 ();
 use Carp qw/confess/;
@@ -30,7 +30,7 @@ has 'tweet' => (
 has 'tweet_url' => (
   is  => 'ro',
   isa => 'Str',
-  default => 'http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}{{$TRIAL}}.readme',
+  default => 'https://metacpan.org/release/{{$AUTHOR_UC}}/{{$DIST}}-{{$VERSION}}/',
 );
 
 has 'url_shortener' => (
@@ -89,6 +89,9 @@ sub after_release {
       AUTHOR_LC => lc $cpan_id,
       AUTHOR_PATH => $path,
     };
+    my $module = $zilla->name;
+    $module =~ s/-/::/g;
+    $stash->{MODULE} = $module;
 
     my $longurl = $self->fill_in_string($self->tweet_url, $stash);
     foreach my $service (($self->url_shortener, 'TinyURL')) { # Fallback to TinyURL on errors
@@ -139,7 +142,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 

@@ -7,6 +7,8 @@ Makefile.PL
 README
 README.PATCHING
 Todo
+corpus/DZ-Test/dist.ini
+corpus/DZ-Test/lib/DZ/Test.pm
 corpus/DZ1/dist.ini
 corpus/DZ1/lib/DZ1.pm
 corpus/DZ2/dist.ini
@@ -20,6 +22,7 @@ t/lib/LWP/TestUA.pm
 t/lib/Net/Netrc.pm
 t/lib/Test/DZil.pm
 t/lib/WWW/Shorten/TinyURL.pm
+t/module.t
 t/twitter.t
 weaver.ini
 xt/release/distmeta.t

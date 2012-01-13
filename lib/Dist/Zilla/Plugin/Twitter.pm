@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 package Dist::Zilla::Plugin::Twitter;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.013'; # VERSION
+our $VERSION = '0.014'; # VERSION
 
 use Dist::Zilla 4 ();
 use Carp qw/confess/;
@@ -82,6 +82,7 @@ sub after_release {
 
     my $stash = {
       DIST => $zilla->name,
+      ABSTRACT => $zilla->abstract,
       VERSION => $zilla->version,
       TRIAL   => ( $zilla->is_trial ? '-TRIAL' : '' ),
       TARBALL => "$tgz",
@@ -142,7 +143,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.013
+version 0.014
 
 =head1 SYNOPSIS
 
@@ -174,10 +175,11 @@ The default configuration is as follows:
 
 The C<<< tweet_url >>> is shortened with L<WWW::Shorten::TinyURL> or
 whichever other service you choose and
-appended to the C<<< tweet >>> messsage.  The following variables are
+appended to the C<<< tweet >>> message.  The following variables are
 available for substitution in the URL and message templates:
 
        DIST        # Foo-Bar
+       ABSTRACT    # Foo-Bar is a module that FooBars
        VERSION     # 1.23
        TRIAL       # -TRIAL if is_trial, empty string otherwise.
        TARBALL     # Foo-Bar-1.23.tar.gz
@@ -193,7 +195,7 @@ You can use the C<<< hash_tags >>> option to append hash tags (or anything,
 really) to the end of the message generated from C<<< tweet >>>.
 
    [Twitter]
-   hash-tags = #perl #cpan #foo
+   hash_tags = #perl #cpan #foo
 
 =for Pod::Coverage after_release
 
@@ -203,9 +205,9 @@ really) to the end of the message generated from C<<< tweet >>>.
 
 =head2 Bugs / Feature Requests
 
-Please report any bugs or feature requests by email to C<bug-dist-zilla-plugin-twitter at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twitter>. You will be automatically notified of any
-progress on the request by the system.
+Please report any bugs or feature requests through the issue tracker
+at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twitter>.
+You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
 
@@ -222,7 +224,7 @@ David Golden <dagolden@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

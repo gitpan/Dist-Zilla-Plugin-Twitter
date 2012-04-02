@@ -1,5 +1,13 @@
 Revision history for Dist-Zilla-Plugin-Twitter
 
+0.015     2012-04-01 22:40:05 America/Toronto
+    - Update Twitter authentication method [RT #75995 - Mike Doherty]
+        - This will require all users to re-authorize the application
+          at Twitter, and will fetch & store an access token + secret
+          pair instead of using passwords. You may delete the section
+          in your .netrc file for api.twitter.com unless you need it
+          for something else.
+
 0.014     2012-01-13 12:36:58 America/New_York
 
     - distribution abstract now available for use in tweets

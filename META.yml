@@ -2,6 +2,7 @@
 abstract: 'Twitter when you release with Dist::Zilla'
 author:
   - 'David Golden <dagolden@cpan.org>'
+  - 'Mike Doherty <doherty@cpan.org>'
 build_requires:
   Dist::Zilla::App::Tester: 0
   Dist::Zilla::Role::Releaser: 0
@@ -11,14 +12,13 @@ build_requires:
   HTTP::Response: 0
   LWP::UserAgent: 0
   Params::Util: 0
-  Path::Class: 0
   Sub::Exporter: 0
   Test::More: 0.88
   base: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300003, CPAN::Meta::Converter version 2.112621'
+generated_by: 'Dist::Zilla version 4.300012, CPAN::Meta::Converter version 2.120900'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -35,16 +35,18 @@ no_index:
 provides:
   Dist::Zilla::Plugin::Twitter:
     file: lib/Dist/Zilla/Plugin/Twitter.pm
-    version: 0.014
+    version: 0.015
 requires:
-  Carp: 0
+  Config::INI::Reader: 0
+  Config::INI::Writer: 0
   Dist::Zilla: 4
   Dist::Zilla::Role::AfterRelease: 0
   Dist::Zilla::Role::TextTemplate: 0
-  Math::BigFloat: 0
+  Dist::Zilla::Util: 0
+  File::Spec: 0
   Moose: 0.99
-  Net::Netrc: 0
   Net::Twitter: 3
+  Try::Tiny: 0
   WWW::Shorten: 3.02
   WWW::Shorten::Simple: 0
   WWW::Shorten::TinyURL: 0
@@ -55,6 +57,6 @@ requires:
   warnings: 0
 resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twitter
-  homepage: https://github.com/dagolden/dist-zilla-plugin-twitter
-  repository: https://github.com/dagolden/dist-zilla-plugin-twitter.git
-version: 0.014
+  homepage: https://github.com/doherty/Dist-Zilla-Plugin-Twitter
+  repository: https://github.com/doherty/Dist-Zilla-Plugin-Twitter.git
+version: 0.015

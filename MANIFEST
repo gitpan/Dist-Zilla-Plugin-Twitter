@@ -13,6 +13,7 @@ corpus/DZ1/dist.ini
 corpus/DZ1/lib/DZ1.pm
 corpus/DZ2/dist.ini
 corpus/DZ2/lib/DZ2.pm
+corpus/fake-HOME/dzil/twitter.ini
 dist.ini
 lib/Dist/Zilla/Plugin/Twitter.pm
 t/00-compile.t

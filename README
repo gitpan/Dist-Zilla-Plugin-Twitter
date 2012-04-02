@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.014
+    version 0.015
 
 SYNOPSIS
     In your "dist.ini":
@@ -11,22 +11,14 @@ SYNOPSIS
        hash_tags = #foo
        url_shortener = TinyURL
 
-    In your ".netrc":
-
-        machine api.twitter.com
-          login YOUR_TWITTER_USER_NAME
-          password YOUR_TWITTER_PASSWORD
-
 DESCRIPTION
-    This plugin will use Net::Twitter with the login and password in your
-    ".netrc" file to send a release notice to Twitter. By default, it will
-    include a link to your README file as extracted on a fast CPAN mirror.
-    This works very nicely with Dist::Zilla::Plugin::ReadmeFromPod.
+    This plugin will use Net::Twitter to send a release notice to Twitter.
+    By default, it will include a link to release on <http://metacpan.org>.
 
     The default configuration is as follows:
 
        [Twitter]
-       tweet_url = http://cpan.cpantesters.org/authors/id/{{$AUTHOR_PATH}}/{{$DIST}}-{{$VERSION}}{{$TRIAL}}.readme
+       tweet_url = https://metacpan.org/release/{{$AUTHOR_UC}}/{{$DIST}}-{{$VERSION}}/
        tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}}
        url_shortener = TinyURL
 
@@ -36,6 +28,7 @@ DESCRIPTION
     message templates:
 
            DIST        # Foo-Bar
+           MODULE      # Foo::Bar
            ABSTRACT    # Foo-Bar is a module that FooBars
            VERSION     # 1.23
            TRIAL       # -TRIAL if is_trial, empty string otherwise.
@@ -64,12 +57,14 @@ SUPPORT
     This is open source software. The code repository is available for
     public review and contribution under the terms of the license.
 
-    <https://github.com/dagolden/dist-zilla-plugin-twitter>
+    <https://github.com/doherty/Dist-Zilla-Plugin-Twitter>
 
-      git clone https://github.com/dagolden/dist-zilla-plugin-twitter.git
+      git clone https://github.com/doherty/Dist-Zilla-Plugin-Twitter.git
 
-AUTHOR
-    David Golden <dagolden@cpan.org>
+AUTHORS
+    *   David Golden <dagolden@cpan.org>
+
+    *   Mike Doherty <doherty@cpan.org>
 
 COPYRIGHT AND LICENSE
     This software is Copyright (c) 2012 by David Golden.

@@ -6,13 +6,13 @@ use LWP::TestUA; # mocked UA
 use Net::Netrc; # mocked version
 
 use Test::More 0.88;
-use Path::Class;
+use File::Spec;
 
 use Dist::Zilla::App::Tester;
 use Test::DZil;
 
 ## SIMPLE TEST WITH DZIL::APP TESTER
-
+$ENV{DZIL_GLOBAL_CONFIG_ROOT} = File::Spec->rel2abs( File::Spec->catdir(qw(corpus fake-HOME dzil)) );
 $ENV{DZ_TWITTER_USERAGENT} = 'LWP::TestUA';
 
 my $dist = 'DZ-Test';

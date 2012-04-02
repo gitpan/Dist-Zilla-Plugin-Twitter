@@ -4,9 +4,23 @@ use strict;
 use warnings;
 use Test::More;
 
-eval "use Test::Version 0.04";
-plan skip_all => "Test::Version 0.04 required for testing versions"
-    if $@;
+use Test::Requires {
+    'Test::Version' => 1,
+    'version'       => 0.86,
+};
 
-version_all_ok();
+my @imports = ( 'version_all_ok' );
+
+my $params = {
+    is_strict   => 0,
+    has_version => 1,
+};
+
+push @imports, $params
+    if version->parse( $Test::Version::VERSION ) >= version->parse('1.002');
+
+
+Test::Version->import(@imports);
+
+version_all_ok;
 done_testing;

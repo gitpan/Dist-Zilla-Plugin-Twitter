@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker 6.30;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Twitter when you release with Dist::Zilla",
-  "AUTHOR" => "David Golden <dagolden\@cpan.org>",
+  "AUTHOR" => "David Golden <dagolden\@cpan.org>, Mike Doherty <doherty\@cpan.org>",
   "BUILD_REQUIRES" => {
     "Dist::Zilla::App::Tester" => 0,
     "Dist::Zilla::Role::Releaser" => 0,
@@ -20,7 +20,6 @@ my %WriteMakefileArgs = (
     "HTTP::Response" => 0,
     "LWP::UserAgent" => 0,
     "Params::Util" => 0,
-    "Path::Class" => 0,
     "Sub::Exporter" => 0,
     "Test::More" => "0.88",
     "base" => 0
@@ -33,14 +32,16 @@ my %WriteMakefileArgs = (
   "LICENSE" => "apache",
   "NAME" => "Dist::Zilla::Plugin::Twitter",
   "PREREQ_PM" => {
-    "Carp" => 0,
+    "Config::INI::Reader" => 0,
+    "Config::INI::Writer" => 0,
     "Dist::Zilla" => 4,
     "Dist::Zilla::Role::AfterRelease" => 0,
     "Dist::Zilla::Role::TextTemplate" => 0,
-    "Math::BigFloat" => 0,
+    "Dist::Zilla::Util" => 0,
+    "File::Spec" => 0,
     "Moose" => "0.99",
-    "Net::Netrc" => 0,
     "Net::Twitter" => 3,
+    "Try::Tiny" => 0,
     "WWW::Shorten" => "3.02",
     "WWW::Shorten::Simple" => 0,
     "WWW::Shorten::TinyURL" => 0,
@@ -49,7 +50,7 @@ my %WriteMakefileArgs = (
     "utf8" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.014",
+  "VERSION" => "0.015",
   "test" => {
     "TESTS" => "t/*.t"
   }

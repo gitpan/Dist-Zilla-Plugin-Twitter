@@ -1,0 +1,81 @@
+# NAME
+
+Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
+
+# VERSION
+
+version 0.016
+
+# SYNOPSIS
+
+In your `dist.ini`:
+
+    [Twitter]
+    hash_tags = #foo
+    url_shortener = TinyURL
+
+# DESCRIPTION
+
+This plugin will use [Net::Twitter](http://search.cpan.org/perldoc?Net::Twitter) to send a release notice to Twitter.
+By default, it will include a link to release on [http://metacpan.org](http://metacpan.org).
+
+The default configuration is as follows:
+
+    [Twitter]
+    tweet_url = https://metacpan.org/release/{{$AUTHOR_UC}}/{{$DIST}}-{{$VERSION}}/
+    tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}}
+    url_shortener = TinyURL
+
+The `tweet_url` is shortened with [WWW::Shorten::TinyURL](http://search.cpan.org/perldoc?WWW::Shorten::TinyURL) or
+whichever other service you choose and
+appended to the `tweet` message.  The following variables are
+available for substitution in the URL and message templates:
+
+      DIST        # Foo-Bar
+      MODULE      # Foo::Bar
+      ABSTRACT    # Foo-Bar is a module that FooBars
+      VERSION     # 1.23
+      TRIAL       # -TRIAL if is_trial, empty string otherwise.
+      TARBALL     # Foo-Bar-1.23.tar.gz
+      AUTHOR_UC   # JOHNDOE
+      AUTHOR_LC   # johndoe
+      AUTHOR_PATH # J/JO/JOHNDOE
+      URL         # http://tinyurl.com/...
+
+You must be using the `UploadToCPAN` or `FakeRelease` plugin for this plugin to
+determine your CPAN author ID.
+
+You can use the `hash_tags` option to append hash tags (or anything,
+really) to the end of the message generated from `tweet`.
+
+    [Twitter]
+    hash_tags = #perl #cpan #foo
+
+# AVAILABILITY
+
+The latest version of this module is available from the Comprehensive Perl
+Archive Network (CPAN). Visit [http://www.perl.com/CPAN/](http://www.perl.com/CPAN/) to find a CPAN
+site near you, or see [https://metacpan.org/module/Dist::Zilla::Plugin::Twitter/](https://metacpan.org/module/Dist::Zilla::Plugin::Twitter/).
+
+# SOURCE
+
+The development version is on github at [http://github.com/dagolden/dist-zilla-plugin-twitter](http://github.com/dagolden/dist-zilla-plugin-twitter)
+and may be cloned from [git://github.com/dagolden/dist-zilla-plugin-twitter.git](git://github.com/dagolden/dist-zilla-plugin-twitter.git)
+
+# BUGS AND LIMITATIONS
+
+You can make new bug reports, and view existing ones, through the
+web interface at [https://github.com/dagolden/dist-zilla-plugin-twitter/issues](https://github.com/dagolden/dist-zilla-plugin-twitter/issues).
+
+# AUTHORS
+
+- David Golden <dagolden@cpan.org>
+- Mike Doherty <doherty@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2012 by David Golden.
+
+This is free software, licensed under:
+
+    The Apache License, Version 2.0, January 2004

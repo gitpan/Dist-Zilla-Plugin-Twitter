@@ -16,19 +16,19 @@
    "name" : "Dist-Zilla-Plugin-Twitter",
    "no_index" : {
       "directory" : [
-         "t",
-         "xt",
-         "examples",
          "corpus"
-      ],
-      "package" : [
-         "DB"
       ]
    },
    "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Module::Build" : "0.3601"
+         }
+      },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30"
+            "ExtUtils::MakeMaker" : "6.30",
+            "Module::Build" : "0.3601"
          }
       },
       "runtime" : {
@@ -69,25 +69,17 @@
          }
       }
    },
-   "provides" : {
-      "Dist::Zilla::Plugin::Twitter" : {
-         "file" : "lib/Dist/Zilla/Plugin/Twitter.pm",
-         "version" : "0.015"
-      }
-   },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "mailto" : "bug-dist-zilla-plugin-twitter at rt.cpan.org",
-         "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twitter"
+         "web" : "https://github.com/dagolden/dist-zilla-plugin-twitter/issues"
       },
-      "homepage" : "https://github.com/doherty/Dist-Zilla-Plugin-Twitter",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/doherty/Dist-Zilla-Plugin-Twitter.git",
-         "web" : "https://github.com/doherty/Dist-Zilla-Plugin-Twitter"
+         "url" : "git://github.com/dagolden/dist-zilla-plugin-twitter.git",
+         "web" : "https://github.com/dagolden/dist-zilla-plugin-twitter"
       }
    },
-   "version" : "0.015"
+   "version" : "0.016"
 }
 

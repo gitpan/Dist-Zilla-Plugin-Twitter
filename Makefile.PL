@@ -19,13 +19,15 @@ my %WriteMakefileArgs = (
     "File::Temp" => 0,
     "HTTP::Response" => 0,
     "LWP::UserAgent" => 0,
+    "Module::Build" => "0.3601",
     "Params::Util" => 0,
     "Sub::Exporter" => 0,
     "Test::More" => "0.88",
     "base" => 0
   },
   "CONFIGURE_REQUIRES" => {
-    "ExtUtils::MakeMaker" => "6.30"
+    "ExtUtils::MakeMaker" => "6.30",
+    "Module::Build" => "0.3601"
   },
   "DISTNAME" => "Dist-Zilla-Plugin-Twitter",
   "EXE_FILES" => [],
@@ -50,7 +52,7 @@ my %WriteMakefileArgs = (
     "utf8" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.015",
+  "VERSION" => "0.016",
   "test" => {
     "TESTS" => "t/*.t"
   }

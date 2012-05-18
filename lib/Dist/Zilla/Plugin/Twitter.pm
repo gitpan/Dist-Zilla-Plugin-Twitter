@@ -1,10 +1,10 @@
+package Dist::Zilla::Plugin::Twitter;
 use 5.008;
 use strict;
 use warnings;
 use utf8;
-package Dist::Zilla::Plugin::Twitter;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.015'; # VERSION
+our $VERSION = '0.016'; # VERSION
 
 use Dist::Zilla 4 ();
 use Moose 0.99;
@@ -14,6 +14,7 @@ use WWW::Shorten 3.02 ();     # For latest updates to dead services
 use WWW::Shorten::TinyURL (); # Our fallback
 use namespace::autoclean 0.09;
 use Try::Tiny;
+
 
 # extends, roles, attributes, etc.
 with 'Dist::Zilla::Role::AfterRelease';
@@ -93,7 +94,7 @@ has 'twitter' => (
             my $auth_url = $nt->get_authorization_url;
             $self->log(__PACKAGE__ . " isn't authorized to tweet on your behalf yet");
             $self->log("Go to $auth_url to authorize this application");
-            my $pin = $self->zilla->chrome->prompt_str('Enter the PIN: ', { noecho => 1 });
+            my $pin = $self->zilla->chrome->prompt_str('Enter the PIN: ');
             chomp $pin;
             # Fetches tokens and sets them in the Net::Twitter object
             my @access_tokens = $nt->request_access_token(verifier => $pin);
@@ -181,9 +182,10 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 
-
-
+__END__
 =pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -191,15 +193,15 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 
-In your C<<< dist.ini >>>:
+In your F<dist.ini>:
 
-   [Twitter]
-   hash_tags = #foo
-   url_shortener = TinyURL
+    [Twitter]
+    hash_tags = #foo
+    url_shortener = TinyURL
 
 =head1 DESCRIPTION
 
@@ -208,56 +210,56 @@ By default, it will include a link to release on L<http://metacpan.org>.
 
 The default configuration is as follows:
 
-   [Twitter]
-   tweet_url = https://metacpan.org/release/{{$AUTHOR_UC}}/{{$DIST}}-{{$VERSION}}/
-   tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}}
-   url_shortener = TinyURL
+    [Twitter]
+    tweet_url = https://metacpan.org/release/{{$AUTHOR_UC}}/{{$DIST}}-{{$VERSION}}/
+    tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}}
+    url_shortener = TinyURL
 
-The C<<< tweet_url >>> is shortened with L<WWW::Shorten::TinyURL> or
+The C<tweet_url> is shortened with L<WWW::Shorten::TinyURL> or
 whichever other service you choose and
-appended to the C<<< tweet >>> message.  The following variables are
+appended to the C<tweet> message.  The following variables are
 available for substitution in the URL and message templates:
 
-       DIST        # Foo-Bar
-       MODULE      # Foo::Bar
-       ABSTRACT    # Foo-Bar is a module that FooBars
-       VERSION     # 1.23
-       TRIAL       # -TRIAL if is_trial, empty string otherwise.
-       TARBALL     # Foo-Bar-1.23.tar.gz
-       AUTHOR_UC   # JOHNDOE
-       AUTHOR_LC   # johndoe
-       AUTHOR_PATH # J/JO/JOHNDOE
-       URL         # http://tinyurl.com/...
+      DIST        # Foo-Bar
+      MODULE      # Foo::Bar
+      ABSTRACT    # Foo-Bar is a module that FooBars
+      VERSION     # 1.23
+      TRIAL       # -TRIAL if is_trial, empty string otherwise.
+      TARBALL     # Foo-Bar-1.23.tar.gz
+      AUTHOR_UC   # JOHNDOE
+      AUTHOR_LC   # johndoe
+      AUTHOR_PATH # J/JO/JOHNDOE
+      URL         # http://tinyurl.com/...
 
-You must be using the C<<< UploadToCPAN >>> or C<<< FakeRelease >>> plugin for this plugin to
+You must be using the C<UploadToCPAN> or C<FakeRelease> plugin for this plugin to
 determine your CPAN author ID.
 
-You can use the C<<< hash_tags >>> option to append hash tags (or anything,
-really) to the end of the message generated from C<<< tweet >>>.
+You can use the C<hash_tags> option to append hash tags (or anything,
+really) to the end of the message generated from C<tweet>.
 
-   [Twitter]
-   hash_tags = #perl #cpan #foo
+    [Twitter]
+    hash_tags = #perl #cpan #foo
+
+=for test_synopsis 1;
+__END__
 
 =for Pod::Coverage after_release
 
-=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders metacpan
+=head1 AVAILABILITY
 
-=head1 SUPPORT
+The latest version of this module is available from the Comprehensive Perl
+Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN
+site near you, or see L<https://metacpan.org/module/Dist::Zilla::Plugin::Twitter/>.
 
-=head2 Bugs / Feature Requests
+=head1 SOURCE
 
-Please report any bugs or feature requests through the issue tracker
-at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Twitter>.
-You will be notified automatically of any progress on your issue.
+The development version is on github at L<http://github.com/dagolden/dist-zilla-plugin-twitter>
+and may be cloned from L<git://github.com/dagolden/dist-zilla-plugin-twitter.git>
 
-=head2 Source Code
+=head1 BUGS AND LIMITATIONS
 
-This is open source software.  The code repository is available for
-public review and contribution under the terms of the license.
-
-L<https://github.com/doherty/Dist-Zilla-Plugin-Twitter>
-
-  git clone https://github.com/doherty/Dist-Zilla-Plugin-Twitter.git
+You can make new bug reports, and view existing ones, through the
+web interface at L<https://github.com/dagolden/dist-zilla-plugin-twitter/issues>.
 
 =head1 AUTHORS
 
@@ -282,7 +284,4 @@ This is free software, licensed under:
   The Apache License, Version 2.0, January 2004
 
 =cut
-
-
-__END__
 

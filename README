@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.016
+    version 0.017
 
 SYNOPSIS
     In your dist.ini:
@@ -23,8 +23,9 @@ DESCRIPTION
         url_shortener = TinyURL
 
     The "tweet_url" is shortened with WWW::Shorten::TinyURL or whichever
-    other service you choose and appended to the "tweet" message. The
-    following variables are available for substitution in the URL and
+    other service you choose (use 'none' to use the full URL, in which case
+    Twitter will shorten it for you) and appended to the "tweet" message.
+    The following variables are available for substitution in the URL and
     message templates:
 
           DIST        # Foo-Bar

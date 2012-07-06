@@ -5,7 +5,7 @@
       "Mike Doherty <doherty@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300012, CPAN::Meta::Converter version 2.120900",
+   "generated_by" : "Dist::Zilla version 4.300020, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "apache_2_0"
    ],
@@ -16,7 +16,9 @@
    "name" : "Dist-Zilla-Plugin-Twitter",
    "no_index" : {
       "directory" : [
-         "corpus"
+         "corpus",
+         "inc",
+         "examples"
       ]
    },
    "prereqs" : {
@@ -27,7 +29,6 @@
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30",
             "Module::Build" : "0.3601"
          }
       },
@@ -80,6 +81,6 @@
          "web" : "https://github.com/dagolden/dist-zilla-plugin-twitter"
       }
    },
-   "version" : "0.016"
+   "version" : "0.017"
 }
 

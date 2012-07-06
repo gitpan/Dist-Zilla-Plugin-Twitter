@@ -21,7 +21,6 @@ my %module_build_args = (
     "base" => 0
   },
   "configure_requires" => {
-    "ExtUtils::MakeMaker" => "6.30",
     "Module::Build" => "0.3601"
   },
   "dist_abstract" => "Twitter when you release with Dist::Zilla",
@@ -30,7 +29,7 @@ my %module_build_args = (
     "Mike Doherty <doherty\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Twitter",
-  "dist_version" => "0.016",
+  "dist_version" => "0.017",
   "license" => "apache",
   "module_name" => "Dist::Zilla::Plugin::Twitter",
   "recommends" => {},

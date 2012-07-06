@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.016'; # VERSION
+our $VERSION = '0.017'; # VERSION
 
 use Dist::Zilla 4 ();
 use Moose 0.99;
@@ -154,10 +154,16 @@ sub after_release {
     $stash->{MODULE} = $module;
 
     my $longurl = $self->fill_in_string($self->tweet_url, $stash);
-    foreach my $service (($self->url_shortener, 'TinyURL')) { # Fallback to TinyURL on errors
-      my $shortener = WWW::Shorten::Simple->new($service);
-      $self->log("Trying $service");
-      $stash->{URL} = eval { $shortener->shorten($longurl) } and last;
+    if ( $self->url_shortener and $self->url_shortener !~ m/^(?:none|twitter|t\.co)$/ ) {
+      foreach my $service (($self->url_shortener, 'TinyURL')) { # Fallback to TinyURL on errors
+        my $shortener = WWW::Shorten::Simple->new($service);
+        $self->log("Trying $service");
+        $stash->{URL} = eval { $shortener->shorten($longurl) } and last;
+      }
+    }
+    else {
+      $self->log('dist.ini specifies to not use a URL shortener; using full URL');
+      $stash->{URL} = $longurl;
     }
 
     my $msg = $self->fill_in_string( $self->tweet, $stash);
@@ -193,7 +199,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 SYNOPSIS
 
@@ -216,9 +222,10 @@ The default configuration is as follows:
     url_shortener = TinyURL
 
 The C<tweet_url> is shortened with L<WWW::Shorten::TinyURL> or
-whichever other service you choose and
-appended to the C<tweet> message.  The following variables are
-available for substitution in the URL and message templates:
+whichever other service you choose (use 'none' to use the full URL,
+in which case Twitter will shorten it for you) and appended to the
+C<tweet> message.  The following variables are available for
+substitution in the URL and message templates:
 
       DIST        # Foo-Bar
       MODULE      # Foo::Bar

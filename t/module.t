@@ -23,15 +23,16 @@ is($result->exit_code, 0, "dzil release would have exited 0");
 my $module = $dist;
 $module =~ s/-/::/g;
 my $url = "http://p3rl.org/$module";
-my $msg = "[Twitter] Released $dist-v1.2.2 $url #bar";
+my $tweet = "[Twitter] Released $dist-v1.2.2 $url #bar";
 
 ok(
-  (grep { $_ eq $msg } @{ $result->log_messages }),
+  (grep { $_ eq $tweet } @{ $result->log_messages }),
   "we logged the Twitter message",
 ) or diag "STDOUT:\n" . $result->output . "STDERR:\n" . $result->error;
 
+my $no_shortener_msg = '[Twitter] dist.ini specifies to not use a URL shortener; using full URL';
 ok (
-   (grep { $_ eq '[Twitter] Trying Metamark' } @{ $result->log_messages }),
+   (grep { $_ eq $no_shortener_msg } @{ $result->log_messages }),
    'Log claims we tried to use WWW::Shorten::Metamark',
 ) or diag "STDOUT:\n" . $result->output . "STDERR:\n" . $result->error;
 

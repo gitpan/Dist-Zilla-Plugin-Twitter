@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 # VERSION
 
-version 0.019
+version 0.020
 
 # SYNOPSIS
 
@@ -64,19 +64,21 @@ really) to the end of the message generated from `tweet`.
 
 # AVAILABILITY
 
+The project homepage is [http://metacpan.org/release/Dist-Zilla-Plugin-Twitter/](http://metacpan.org/release/Dist-Zilla-Plugin-Twitter/).
+
 The latest version of this module is available from the Comprehensive Perl
 Archive Network (CPAN). Visit [http://www.perl.com/CPAN/](http://www.perl.com/CPAN/) to find a CPAN
 site near you, or see [https://metacpan.org/module/Dist::Zilla::Plugin::Twitter/](https://metacpan.org/module/Dist::Zilla::Plugin::Twitter/).
 
 # SOURCE
 
-The development version is on github at [http://github.com/dagolden/dist-zilla-plugin-twitter](http://github.com/dagolden/dist-zilla-plugin-twitter)
-and may be cloned from [git://github.com/dagolden/dist-zilla-plugin-twitter.git](git://github.com/dagolden/dist-zilla-plugin-twitter.git)
+The development version is on github at [http://github.com/doherty/Dist-Zilla-Plugin-Twitter](http://github.com/doherty/Dist-Zilla-Plugin-Twitter)
+and may be cloned from [git://github.com/doherty/Dist-Zilla-Plugin-Twitter.git](git://github.com/doherty/Dist-Zilla-Plugin-Twitter.git)
 
 # BUGS AND LIMITATIONS
 
 You can make new bug reports, and view existing ones, through the
-web interface at [https://github.com/dagolden/dist-zilla-plugin-twitter/issues](https://github.com/dagolden/dist-zilla-plugin-twitter/issues).
+web interface at [https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues](https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues).
 
 # AUTHORS
 

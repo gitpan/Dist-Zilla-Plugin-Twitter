@@ -51,6 +51,7 @@ requires:
   utf8: 0
   warnings: 0
 resources:
-  bugtracker: https://github.com/dagolden/dist-zilla-plugin-twitter/issues
-  repository: git://github.com/dagolden/dist-zilla-plugin-twitter.git
-version: 0.019
+  bugtracker: https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues
+  homepage: http://metacpan.org/release/Dist-Zilla-Plugin-Twitter/
+  repository: git://github.com/doherty/Dist-Zilla-Plugin-Twitter.git
+version: 0.020

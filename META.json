@@ -82,14 +82,15 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/dagolden/dist-zilla-plugin-twitter/issues"
+         "web" : "https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues"
       },
+      "homepage" : "http://metacpan.org/release/Dist-Zilla-Plugin-Twitter/",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/dagolden/dist-zilla-plugin-twitter.git",
-         "web" : "https://github.com/dagolden/dist-zilla-plugin-twitter"
+         "url" : "git://github.com/doherty/Dist-Zilla-Plugin-Twitter.git",
+         "web" : "https://github.com/doherty/Dist-Zilla-Plugin-Twitter"
       }
    },
-   "version" : "0.019"
+   "version" : "0.020"
 }
 

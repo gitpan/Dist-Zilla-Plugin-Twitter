@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.019'; # VERSION
+our $VERSION = '0.020'; # VERSION
 
 use Dist::Zilla 4 ();
 use Moose 0.99;
@@ -240,7 +240,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 SYNOPSIS
 
@@ -305,19 +305,21 @@ __END__
 
 =head1 AVAILABILITY
 
+The project homepage is L<http://metacpan.org/release/Dist-Zilla-Plugin-Twitter/>.
+
 The latest version of this module is available from the Comprehensive Perl
 Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN
 site near you, or see L<https://metacpan.org/module/Dist::Zilla::Plugin::Twitter/>.
 
 =head1 SOURCE
 
-The development version is on github at L<http://github.com/dagolden/dist-zilla-plugin-twitter>
-and may be cloned from L<git://github.com/dagolden/dist-zilla-plugin-twitter.git>
+The development version is on github at L<http://github.com/doherty/Dist-Zilla-Plugin-Twitter>
+and may be cloned from L<git://github.com/doherty/Dist-Zilla-Plugin-Twitter.git>
 
 =head1 BUGS AND LIMITATIONS
 
 You can make new bug reports, and view existing ones, through the
-web interface at L<https://github.com/dagolden/dist-zilla-plugin-twitter/issues>.
+web interface at L<https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues>.
 
 =head1 AUTHORS
 

@@ -1,5 +1,8 @@
 Revision history for Dist-Zilla-Plugin-Twitter
 
+0.020     2013-02-02
+    - Link to doherty's github repo instead of dagolden's
+
 0.019     2013-02-02
     - Fix a typo in the default tweet spec
 

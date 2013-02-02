@@ -28,12 +28,12 @@ my $tweet = "[Twitter] Released $dist-v1.2.2 $url #bar";
 ok(
   (grep { $_ eq $tweet } @{ $result->log_messages }),
   "we logged the Twitter message",
-) or diag "STDOUT:\n" . $result->output . "STDERR:\n" . $result->error;
+) or diag explain { STDOUT => $result->output, STDERR => $result->error };
 
 my $no_shortener_msg = '[Twitter] dist.ini specifies to not use a URL shortener; using full URL';
 ok (
    (grep { $_ eq $no_shortener_msg } @{ $result->log_messages }),
    'Log claims we tried to use WWW::Shorten::Metamark',
-) or diag "STDOUT:\n" . $result->output . "STDERR:\n" . $result->error;
+) or diag explain { STDOUT => $result->output, STDERR => $result->error };
 
 done_testing;

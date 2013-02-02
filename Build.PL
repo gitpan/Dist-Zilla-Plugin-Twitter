@@ -29,7 +29,7 @@ my %module_build_args = (
     "Mike Doherty <doherty\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Twitter",
-  "dist_version" => "0.017",
+  "dist_version" => "0.018",
   "license" => "apache",
   "module_name" => "Dist::Zilla::Plugin::Twitter",
   "recommends" => {},
@@ -41,6 +41,7 @@ my %module_build_args = (
     "Dist::Zilla::Role::AfterRelease" => 0,
     "Dist::Zilla::Role::TextTemplate" => 0,
     "Dist::Zilla::Util" => 0,
+    "File::Path" => 0,
     "File::Spec" => 0,
     "Moose" => "0.99",
     "Net::Twitter" => 3,

@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.017
+    version 0.018
 
 SYNOPSIS
     In your dist.ini:
@@ -39,6 +39,15 @@ DESCRIPTION
           AUTHOR_PATH # J/JO/JOHNDOE
           URL         # http://tinyurl.com/...
 
+    Resources information available in the META.* files of the distribution
+    can be accessed via "<META{key}{subkey}">, and those values can also be
+    shortener by prefixing 'resources' with a '!'. So, for example, to use
+    the GitHub home of the project instead of its metacpan page, one can do:
+
+        [Twitter]
+        tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} !META{resource}{repository}{web}
+        url_shortener = TinyURL
+
     You must be using the "UploadToCPAN" or "FakeRelease" plugin for this
     plugin to determine your CPAN author ID.
 
@@ -70,7 +79,7 @@ AUTHORS
     *   Mike Doherty <doherty@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is Copyright (c) 2012 by David Golden.
+    This software is Copyright (c) 2013 by David Golden.
 
     This is free software, licensed under:
 

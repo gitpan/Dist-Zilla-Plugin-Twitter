@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla-Plugin-Twitter
 
+0.018     2013-02-02
+    - Allow adding any information from META [Yanick Champoux] and
+      add a link to the repo's web URL by default
+
 0.017     2012-07-06
     - Use url_shortener=none to use the full URL (which Twitter will
       shorten with t.co)

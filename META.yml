@@ -19,7 +19,7 @@ build_requires:
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300020, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300030, CPAN::Meta::Converter version 2.120921'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -37,6 +37,7 @@ requires:
   Dist::Zilla::Role::AfterRelease: 0
   Dist::Zilla::Role::TextTemplate: 0
   Dist::Zilla::Util: 0
+  File::Path: 0
   File::Spec: 0
   Moose: 0.99
   Net::Twitter: 3
@@ -52,4 +53,4 @@ requires:
 resources:
   bugtracker: https://github.com/dagolden/dist-zilla-plugin-twitter/issues
   repository: git://github.com/dagolden/dist-zilla-plugin-twitter.git
-version: 0.017
+version: 0.018

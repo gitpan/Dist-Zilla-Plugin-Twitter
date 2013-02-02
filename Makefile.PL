@@ -39,6 +39,7 @@ my %WriteMakefileArgs = (
     "Dist::Zilla::Role::AfterRelease" => 0,
     "Dist::Zilla::Role::TextTemplate" => 0,
     "Dist::Zilla::Util" => 0,
+    "File::Path" => 0,
     "File::Spec" => 0,
     "Moose" => "0.99",
     "Net::Twitter" => 3,
@@ -51,7 +52,7 @@ my %WriteMakefileArgs = (
     "utf8" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.017",
+  "VERSION" => "0.018",
   "test" => {
     "TESTS" => "t/*.t"
   }

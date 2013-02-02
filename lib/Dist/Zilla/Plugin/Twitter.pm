@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.017'; # VERSION
+our $VERSION = '0.018'; # VERSION
 
 use Dist::Zilla 4 ();
 use Moose 0.99;
@@ -23,7 +23,7 @@ with 'Dist::Zilla::Role::TextTemplate';
 has 'tweet' => (
   is  => 'ro',
   isa => 'Str',
-  default => 'Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}}'
+  default => 'Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}} !META{resource}{repository}{web}'
 );
 
 has 'tweet_url' => (
@@ -46,15 +46,28 @@ has 'hash_tags' => (
 has 'config_file' => (
     is => 'ro',
     isa => 'Str',
+    lazy => 1,
     default => sub {
+        my $self = shift;
         require File::Spec;
         require Dist::Zilla::Util;
 
         return File::Spec->catfile(
-            Dist::Zilla::Util->_global_config_root(),
+            $self->config_dir,
             'twitter.ini'
         );
     }
+);
+
+has 'config_dir' => (
+    is => 'ro',
+    isa => 'Str',
+    lazy => 1,
+    default => sub {
+        require Dist::Zilla::Util;
+        my $dir = Dist::Zilla::Util->_global_config_root();
+        return $dir->stringify;
+    },
 );
 
 has 'consumer_tokens' => (
@@ -98,6 +111,11 @@ has 'twitter' => (
             chomp $pin;
             # Fetches tokens and sets them in the Net::Twitter object
             my @access_tokens = $nt->request_access_token(verifier => $pin);
+
+            unless ( -d $self->config_dir ) {
+                require File::Path;
+                File::Path::make_path( $self->config_dir );
+            }
 
             require Config::INI::Writer;
             Config::INI::Writer->write_file( {
@@ -154,23 +172,22 @@ sub after_release {
     $stash->{MODULE} = $module;
 
     my $longurl = $self->fill_in_string($self->tweet_url, $stash);
-    if ( $self->url_shortener and $self->url_shortener !~ m/^(?:none|twitter|t\.co)$/ ) {
-      foreach my $service (($self->url_shortener, 'TinyURL')) { # Fallback to TinyURL on errors
-        my $shortener = WWW::Shorten::Simple->new($service);
-        $self->log("Trying $service");
-        $stash->{URL} = eval { $shortener->shorten($longurl) } and last;
-      }
-    }
-    else {
-      $self->log('dist.ini specifies to not use a URL shortener; using full URL');
-      $stash->{URL} = $longurl;
-    }
+    $stash->{URL} = $self->_shorten( $longurl );
 
     my $msg = $self->fill_in_string( $self->tweet, $stash);
+
+    $DB::single = 1;
+
+    $msg =~ s/(\!?)META((?:\{[^}]+\})+)/
+        ( $1 ? '$self->_shorten(' : '' )
+      . '$self->zilla->distmeta->'.$2
+      . ( $1 ? ')' : '' )
+     /xeeg;
+
     if (defined $self->hash_tags) {
         $msg .= " " . $self->hash_tags;
     }
-
+    $msg =~ tr/ //s; # squeeze multiple consecutive spaces into just one
 
     try {
         $self->twitter->update($msg);
@@ -184,11 +201,32 @@ sub after_release {
     return 1;
 }
 
+
+sub _shorten {
+    my( $self, $url ) = @_;
+
+    unless ( $self->url_shortener and $self->url_shortener !~ m/^(?:none|twitter|t\.co)$/ ) {
+      $self->log('dist.ini specifies to not use a URL shortener; using full URL');
+      return $url;
+    }
+
+    foreach my $service (($self->url_shortener, 'TinyURL')) { # Fallback to TinyURL on errors
+        my $shortener = WWW::Shorten::Simple->new($service);
+        $self->log("Trying $service");
+        if ( my $short = eval { $shortener->_shorten($url) } ) {
+            return $short;
+        }
+    }
+
+    return $url;
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -199,7 +237,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 
@@ -237,6 +275,16 @@ substitution in the URL and message templates:
       AUTHOR_LC   # johndoe
       AUTHOR_PATH # J/JO/JOHNDOE
       URL         # http://tinyurl.com/...
+
+Resources information available in the META.* files of the
+distribution can be accessed via C<<META{key}{subkey}>>,
+and those values can also be shortener by prefixing 'resources' with a '!'.
+So, for example, to use the GitHub home of the project instead of its metacpan
+page, one can do:
+
+    [Twitter]
+    tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} !META{resource}{repository}{web}
+    url_shortener = TinyURL
 
 You must be using the C<UploadToCPAN> or C<FakeRelease> plugin for this plugin to
 determine your CPAN author ID.
@@ -284,11 +332,10 @@ Mike Doherty <doherty@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2012 by David Golden.
+This software is Copyright (c) 2013 by David Golden.
 
 This is free software, licensed under:
 
   The Apache License, Version 2.0, January 2004
 
 =cut
-

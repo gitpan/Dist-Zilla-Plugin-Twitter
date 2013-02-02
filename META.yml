@@ -53,4 +53,4 @@ requires:
 resources:
   bugtracker: https://github.com/dagolden/dist-zilla-plugin-twitter/issues
   repository: git://github.com/dagolden/dist-zilla-plugin-twitter.git
-version: 0.018
+version: 0.019

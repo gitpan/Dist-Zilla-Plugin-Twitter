@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.018'; # VERSION
+our $VERSION = '0.019'; # VERSION
 
 use Dist::Zilla 4 ();
 use Moose 0.99;
@@ -23,7 +23,7 @@ with 'Dist::Zilla::Role::TextTemplate';
 has 'tweet' => (
   is  => 'ro',
   isa => 'Str',
-  default => 'Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}} !META{resource}{repository}{web}'
+  default => 'Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}} !META{resources}{repository}{web}'
 );
 
 has 'tweet_url' => (
@@ -178,11 +178,14 @@ sub after_release {
 
     $DB::single = 1;
 
-    $msg =~ s/(\!?)META((?:\{[^}]+\})+)/
-        ( $1 ? '$self->_shorten(' : '' )
-      . '$self->zilla->distmeta->'.$2
-      . ( $1 ? ')' : '' )
-     /xeeg;
+    {
+        no warnings qw/ uninitialized /;
+        $msg =~ s/(\!?)META((?:\{[^}]+\})+)/
+            ( $1 ? '$self->_shorten(' : '' )
+          . '$self->zilla->distmeta->'.$2
+          . ( $1 ? ')' : '' )
+         /xeeg;
+     }
 
     if (defined $self->hash_tags) {
         $msg .= " " . $self->hash_tags;
@@ -237,7 +240,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 SYNOPSIS
 

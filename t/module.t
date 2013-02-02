@@ -23,7 +23,7 @@ is($result->exit_code, 0, "dzil release would have exited 0");
 my $module = $dist;
 $module =~ s/-/::/g;
 my $url = "http://p3rl.org/$module";
-my $tweet = "[Twitter] Released $dist-v1.2.2 $url #bar";
+my $tweet = "[Twitter] Released $dist-v1.2.2 $url http://github.com/dude/project #bar";
 
 ok(
   (grep { $_ eq $tweet } @{ $result->log_messages }),

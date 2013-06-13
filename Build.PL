@@ -7,18 +7,7 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Dist::Zilla::App::Tester" => 0,
-    "Dist::Zilla::Role::Releaser" => 0,
-    "Dist::Zilla::Tester" => 0,
-    "File::Find" => 0,
-    "File::Temp" => 0,
-    "HTTP::Response" => 0,
-    "LWP::UserAgent" => 0,
-    "Module::Build" => "0.3601",
-    "Params::Util" => 0,
-    "Sub::Exporter" => 0,
-    "Test::More" => "0.88",
-    "base" => 0
+    "Module::Build" => "0.3601"
   },
   "configure_requires" => {
     "Module::Build" => "0.3601"
@@ -29,7 +18,7 @@ my %module_build_args = (
     "Mike Doherty <doherty\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Twitter",
-  "dist_version" => "0.020",
+  "dist_version" => "0.021",
   "license" => "apache",
   "module_name" => "Dist::Zilla::Plugin::Twitter",
   "recommends" => {},
@@ -44,7 +33,7 @@ my %module_build_args = (
     "File::Path" => 0,
     "File::Spec" => 0,
     "Moose" => "0.99",
-    "Net::Twitter" => 3,
+    "Net::Twitter" => "4.00001",
     "Try::Tiny" => 0,
     "WWW::Shorten" => "3.02",
     "WWW::Shorten::Simple" => 0,
@@ -55,9 +44,35 @@ my %module_build_args = (
     "utf8" => 0,
     "warnings" => 0
   },
-  "script_files" => []
+  "script_files" => [],
+  "test_requires" => {
+    "Dist::Zilla::App::Tester" => 0,
+    "Dist::Zilla::Role::Releaser" => 0,
+    "Dist::Zilla::Tester" => 0,
+    "File::Find" => 0,
+    "File::Temp" => 0,
+    "HTTP::Response" => 0,
+    "LWP::UserAgent" => 0,
+    "Params::Util" => 0,
+    "Sub::Exporter" => 0,
+    "Test::More" => "0.88",
+    "base" => 0
+  }
 );
 
+
+unless ( eval { Module::Build->VERSION(0.4004) } ) {
+  my $tr = delete $module_build_args{test_requires};
+  my $br = $module_build_args{build_requires};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
 
 my $build = Module::Build->new(%module_build_args);
 

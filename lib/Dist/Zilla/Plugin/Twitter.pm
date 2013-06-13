@@ -4,11 +4,11 @@ use strict;
 use warnings;
 use utf8;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Dist::Zilla 4 ();
 use Moose 0.99;
-use Net::Twitter 3 ();
+use Net::Twitter 4.00001 ();  # API v1.1 support
 use WWW::Shorten::Simple ();  # A useful interface to WWW::Shorten
 use WWW::Shorten 3.02 ();     # For latest updates to dead services
 use WWW::Shorten::TinyURL (); # Our fallback
@@ -90,7 +90,7 @@ has 'twitter' => (
         my $self = shift;
         my $nt = Net::Twitter->new(
             useragent_class => $ENV{DZ_TWITTER_USERAGENT} || 'LWP::UserAgent',
-            traits => [qw/ API::REST OAuth /],
+            traits => [qw/ API::RESTv1_1 OAuth /],
             %{ $self->consumer_tokens },
         );
 
@@ -240,7 +240,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 

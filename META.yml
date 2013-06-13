@@ -19,7 +19,7 @@ build_requires:
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300030, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.131490'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -40,7 +40,7 @@ requires:
   File::Path: 0
   File::Spec: 0
   Moose: 0.99
-  Net::Twitter: 3
+  Net::Twitter: 4.00001
   Try::Tiny: 0
   WWW::Shorten: 3.02
   WWW::Shorten::Simple: 0
@@ -54,4 +54,4 @@ resources:
   bugtracker: https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues
   homepage: http://metacpan.org/release/Dist-Zilla-Plugin-Twitter/
   repository: git://github.com/doherty/Dist-Zilla-Plugin-Twitter.git
-version: 0.020
+version: 0.021

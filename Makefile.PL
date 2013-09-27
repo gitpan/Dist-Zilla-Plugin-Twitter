@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use 5.008;
+use 5.009005;
 
 use ExtUtils::MakeMaker 6.30;
 
@@ -45,16 +45,18 @@ my %WriteMakefileArgs = (
     "Dist::Zilla::App::Tester" => 0,
     "Dist::Zilla::Role::Releaser" => 0,
     "Dist::Zilla::Tester" => 0,
-    "File::Find" => 0,
-    "File::Temp" => 0,
+    "File::Spec" => 0,
     "HTTP::Response" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
     "LWP::UserAgent" => 0,
     "Params::Util" => 0,
     "Sub::Exporter" => 0,
     "Test::More" => "0.88",
-    "base" => 0
+    "base" => 0,
+    "lib" => 0
   },
-  "VERSION" => "0.021",
+  "VERSION" => "0.022",
   "test" => {
     "TESTS" => "t/*.t"
   }

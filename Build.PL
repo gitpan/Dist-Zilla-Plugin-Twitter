@@ -18,7 +18,7 @@ my %module_build_args = (
     "Mike Doherty <doherty\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Twitter",
-  "dist_version" => "0.021",
+  "dist_version" => "0.022",
   "license" => "apache",
   "module_name" => "Dist::Zilla::Plugin::Twitter",
   "recommends" => {},
@@ -39,7 +39,7 @@ my %module_build_args = (
     "WWW::Shorten::Simple" => 0,
     "WWW::Shorten::TinyURL" => 0,
     "namespace::autoclean" => "0.09",
-    "perl" => "5.008",
+    "perl" => "5.009005",
     "strict" => 0,
     "utf8" => 0,
     "warnings" => 0
@@ -49,14 +49,16 @@ my %module_build_args = (
     "Dist::Zilla::App::Tester" => 0,
     "Dist::Zilla::Role::Releaser" => 0,
     "Dist::Zilla::Tester" => 0,
-    "File::Find" => 0,
-    "File::Temp" => 0,
+    "File::Spec" => 0,
     "HTTP::Response" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
     "LWP::UserAgent" => 0,
     "Params::Util" => 0,
     "Sub::Exporter" => 0,
     "Test::More" => "0.88",
-    "base" => 0
+    "base" => 0,
+    "lib" => 0
   }
 );
 

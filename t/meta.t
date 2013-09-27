@@ -21,7 +21,7 @@ is($result->exit_code, 0, "dzil release would have exited 0");
 
 my $dvname = 'DZ1-0.001';
 my $url = "https://metacpan.org/release/AUTHORID/${dvname}/";
-my $msg = "[Twitter] Released $dvname perl_5 #foo";
+my $msg = "[Twitter] E. Xavier Ample <example\@example.org> released DZ1 0.001: $url (perl_5) 1.00 #foo";
 
 ok(
   (grep { $_ eq $msg } @{ $result->log_messages }),

@@ -1,5 +1,8 @@
 Revision history for Dist-Zilla-Plugin-Twitter
 
+0.023     2013-10-18
+  - Improved compile test
+
 0.022     2013-09-27
   - Add new ways of interpolating metadata into tweet text, and
     use that to fix the failing tests.

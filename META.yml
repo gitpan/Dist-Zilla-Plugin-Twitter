@@ -56,4 +56,4 @@ resources:
   bugtracker: https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues
   homepage: http://metacpan.org/release/Dist-Zilla-Plugin-Twitter/
   repository: git://github.com/doherty/Dist-Zilla-Plugin-Twitter.git
-version: 0.022
+version: 0.023

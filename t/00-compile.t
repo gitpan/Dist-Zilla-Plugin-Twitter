@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.019
+# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.037
 
-use Test::More 0.88;
+use Test::More  tests => 1 + ($ENV{AUTHOR_TESTING} ? 1 : 0);
 
 
 
@@ -11,28 +11,30 @@ my @module_files = (
     'Dist/Zilla/Plugin/Twitter.pm'
 );
 
-my @scripts = (
 
-);
 
 # no fake home requested
 
+my $inc_switch = -d 'blib' ? '-Mblib' : '-Ilib';
+
+use File::Spec;
 use IPC::Open3;
 use IO::Handle;
-use File::Spec;
 
 my @warnings;
 for my $lib (@module_files)
 {
-    open my $stdout, '>', File::Spec->devnull or die $!;
-    open my $stdin, '<', File::Spec->devnull or die $!;
+    # see L<perlfaq8/How can I capture STDERR from an external command?>
+    open my $stdin, '<', File::Spec->devnull or die "can't open devnull: $!";
     my $stderr = IO::Handle->new;
 
-    my $pid = open3($stdin, $stdout, $stderr, qq{$^X -Mblib -e"require q[$lib]"});
+    my $pid = open3($stdin, '>&STDERR', $stderr, $^X, $inc_switch, '-e', "require q[$lib]");
+    binmode $stderr, ':crlf' if $^O eq 'MSWin32';
+    my @_warnings = <$stderr>;
     waitpid($pid, 0);
-    is($? >> 8, 0, "$lib loaded ok");
+    is($?, 0, "$lib loaded ok");
 
-    if (my @_warnings = <$stderr>)
+    if (@_warnings)
     {
         warn @_warnings;
         push @warnings, @_warnings;
@@ -44,5 +46,3 @@ for my $lib (@module_files)
 is(scalar(@warnings), 0, 'no warnings found') if $ENV{AUTHOR_TESTING};
 
 
-
-done_testing;

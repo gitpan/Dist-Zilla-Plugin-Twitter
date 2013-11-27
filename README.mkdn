@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 # VERSION
 
-version 0.023
+version 0.024
 
 # SYNOPSIS
 
@@ -16,7 +16,7 @@ In your `dist.ini`:
 
 # DESCRIPTION
 
-This plugin will use [Net::Twitter](http://search.cpan.org/perldoc?Net::Twitter) to send a release notice to Twitter.
+This plugin will use [Net::Twitter](https://metacpan.org/pod/Net::Twitter) to send a release notice to Twitter.
 By default, it will include a link to release on [http://metacpan.org](http://metacpan.org).
 
 The default configuration is as follows:
@@ -26,7 +26,7 @@ The default configuration is as follows:
     tweet = Released {{$DIST}}-{{$VERSION}}{{$TRIAL}} {{$URL}} !META{resources}{repository}{web}
     url_shortener = TinyURL
 
-The `tweet_url` is shortened with [WWW::Shorten::TinyURL](http://search.cpan.org/perldoc?WWW::Shorten::TinyURL) or
+The `tweet_url` is shortened with [WWW::Shorten::TinyURL](https://metacpan.org/pod/WWW::Shorten::TinyURL) or
 whichever other service you choose (use 'none' to use the full URL,
 in which case Twitter will shorten it for you) and appended to the
 `tweet` message.
@@ -54,7 +54,7 @@ can be accessed via `<META{key}{subkey}[1]`\>. You may mix-and-match
 `{...}` to access hashref elements and `[\d]` to access arrayref elements.
 You're responsible for making sure you are accessing the right part of
 the META data structure, and treating it as the right type of data. See
-[CPAN::Meta::Spec](http://search.cpan.org/perldoc?CPAN::Meta::Spec) and the "$TYPE DATA" sections of [CPAN::Meta](http://search.cpan.org/perldoc?CPAN::Meta) in
+[CPAN::Meta::Spec](https://metacpan.org/pod/CPAN::Meta::Spec) and the "$TYPE DATA" sections of [CPAN::Meta](https://metacpan.org/pod/CPAN::Meta) in
 particular.
 
 The `META{...}` replacement may also have one of two modifiers, which

@@ -1,5 +1,8 @@
 Revision history for Dist-Zilla-Plugin-Twitter
 
+0.024     2013-11-27
+  - Add "=head1 NAME" so the pod will get munged during test
+
 0.023     2013-10-18
   - Improved compile test
 

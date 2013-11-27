@@ -18,7 +18,7 @@ my %module_build_args = (
     "Mike Doherty <doherty\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Twitter",
-  "dist_version" => "0.023",
+  "dist_version" => "0.024",
   "license" => "apache",
   "module_name" => "Dist::Zilla::Plugin::Twitter",
   "recommends" => {},
@@ -63,17 +63,27 @@ my %module_build_args = (
 );
 
 
+my %fallback_build_requires = (
+  "Dist::Zilla::App::Tester" => 0,
+  "Dist::Zilla::Role::Releaser" => 0,
+  "Dist::Zilla::Tester" => 0,
+  "File::Spec" => 0,
+  "HTTP::Response" => 0,
+  "IO::Handle" => 0,
+  "IPC::Open3" => 0,
+  "LWP::UserAgent" => 0,
+  "Module::Build" => "0.3601",
+  "Params::Util" => 0,
+  "Sub::Exporter" => 0,
+  "Test::More" => "0.88",
+  "base" => 0,
+  "lib" => 0
+);
+
+
 unless ( eval { Module::Build->VERSION(0.4004) } ) {
-  my $tr = delete $module_build_args{test_requires};
-  my $br = $module_build_args{build_requires};
-  for my $mod ( keys %$tr ) {
-    if ( exists $br->{$mod} ) {
-      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
-    }
-    else {
-      $br->{$mod} = $tr->{$mod};
-    }
-  }
+  delete $module_build_args{test_requires};
+  $module_build_args{build_requires} = \%fallback_build_requires;
 }
 
 my $build = Module::Build->new(%module_build_args);

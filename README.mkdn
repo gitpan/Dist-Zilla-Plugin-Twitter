@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 # VERSION
 
-version 0.024
+version 0.025
 
 # SYNOPSIS
 
@@ -122,7 +122,7 @@ web interface at [https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues](h
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Golden.
+This software is Copyright (c) 2014 by David Golden.
 
 This is free software, licensed under:
 

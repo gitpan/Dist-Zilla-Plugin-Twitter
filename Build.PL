@@ -18,7 +18,7 @@ my %module_build_args = (
     "Mike Doherty <doherty\@cpan.org>"
   ],
   "dist_name" => "Dist-Zilla-Plugin-Twitter",
-  "dist_version" => "0.024",
+  "dist_version" => "0.025",
   "license" => "apache",
   "module_name" => "Dist::Zilla::Plugin::Twitter",
   "recommends" => {},

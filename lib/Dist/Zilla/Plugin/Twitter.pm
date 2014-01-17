@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 # ABSTRACT: Twitter when you release with Dist::Zilla
-our $VERSION = '0.024'; # VERSION
+our $VERSION = '0.025'; # VERSION
 
 use Dist::Zilla 4 ();
 use Moose 0.99;
@@ -91,6 +91,7 @@ has 'twitter' => (
         my $nt = Net::Twitter->new(
             useragent_class => $ENV{DZ_TWITTER_USERAGENT} || 'LWP::UserAgent',
             traits => [qw/ API::RESTv1_1 OAuth /],
+            ssl => 1,
             %{ $self->consumer_tokens },
         );
 
@@ -229,7 +230,7 @@ sub _shorten {
     foreach my $service (($self->url_shortener, 'TinyURL')) { # Fallback to TinyURL on errors
         my $shortener = WWW::Shorten::Simple->new($service);
         $self->log("Trying $service");
-        if ( my $short = eval { $shortener->_shorten($url) } ) {
+        if ( my $short = eval { $shortener->shorten($url) } ) {
             return $short;
         }
     }
@@ -253,7 +254,7 @@ Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 =head1 VERSION
 
-version 0.024
+version 0.025
 
 =head1 SYNOPSIS
 
@@ -389,7 +390,7 @@ Mike Doherty <doherty@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Golden.
+This software is Copyright (c) 2014 by David Golden.
 
 This is free software, licensed under:
 

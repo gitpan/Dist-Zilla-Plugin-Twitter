@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Plugin::Twitter - Twitter when you release with Dist::Zilla
 
 VERSION
-    version 0.025
+    version 0.026
 
 SYNOPSIS
     In your dist.ini:
@@ -87,9 +87,6 @@ DESCRIPTION
         hash_tags = #perl #cpan #foo
 
 AVAILABILITY
-    The project homepage is
-    <http://metacpan.org/release/Dist-Zilla-Plugin-Twitter/>.
-
     The latest version of this module is available from the Comprehensive
     Perl Archive Network (CPAN). Visit <http://www.perl.com/CPAN/> to find a
     CPAN site near you, or see
@@ -97,13 +94,13 @@ AVAILABILITY
 
 SOURCE
     The development version is on github at
-    <http://github.com/doherty/Dist-Zilla-Plugin-Twitter> and may be cloned
-    from <git://github.com/doherty/Dist-Zilla-Plugin-Twitter.git>
+    <http://github.com/dagolden/dist-zilla-plugin-twitter> and may be cloned
+    from <git://github.com/dagolden/dist-zilla-plugin-twitter.git>
 
 BUGS AND LIMITATIONS
     You can make new bug reports, and view existing ones, through the web
     interface at
-    <https://github.com/doherty/Dist-Zilla-Plugin-Twitter/issues>.
+    <https://github.com/dagolden/dist-zilla-plugin-twitter/issues>.
 
 AUTHORS
     *   David Golden <dagolden@cpan.org>

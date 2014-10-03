@@ -29,8 +29,8 @@ ok(
 ) or diag "STDOUT:\n" . $result->output . "STDERR:\n" . $result->error;
 
 ok (
-   (grep { $_ eq '[Twitter] Trying Metamark' } @{ $result->log_messages }),
-   'Log claims we tried to use WWW::Shorten::Metamark',
+   (grep { $_ eq '[Twitter] Trying TinyURL' } @{ $result->log_messages }),
+   'Log claims we tried to use WWW::Shorten::TinyURL',
 ) or diag "STDOUT:\n" . $result->output . "STDERR:\n" . $result->error;
 
 done_testing;

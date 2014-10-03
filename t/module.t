@@ -33,7 +33,7 @@ ok(
 my $no_shortener_msg = '[Twitter] dist.ini specifies to not use a URL shortener; using full URL';
 ok (
    (grep { $_ eq $no_shortener_msg } @{ $result->log_messages }),
-   'Log claims we tried to use WWW::Shorten::Metamark',
+   q/Log claims we didn't use a URL shortener/,
 ) or diag explain { STDOUT => $result->output, STDERR => $result->error };
 
 done_testing;
